@@ -1,2 +1,2 @@
-# rookie
-freedom
+#!  Author:     guxfei@outlook.com
+Freedom
