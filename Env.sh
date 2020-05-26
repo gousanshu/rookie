@@ -8,13 +8,16 @@ yum_config(){
 }
 
 ssh_config(){
-	sed -i 's/#Port 22/Port 222/' /etc/ssh/sshd_config
+	echo -e "请输入远程端口："
+	read ssh_port
+	sed -i "s/#Port 22/Port $ssh_port/" /etc/ssh/sshd_config
 	systemctl restart sshd.service
-	semanage port -a -t ssh_port_t -p tcp 222
-	firewall-cmd --zone=public --add-port=222/tcp --permanent
-	systemctl start firewalld.service 
+	
+	systemctl restart firewalld.service 
+	semanage port -a -t ssh_port_t -p tcp $ssh_port
+	firewall-cmd --zone=public --add-port=$ssh_port/tcp --permanent
+	systemctl restart firewalld.service 
 }
-
 
 if [ $UID -eq 0 ];then
 	yum_config

@@ -1,2 +1,2 @@
-#!  Author:     guxfei@outlook.com
+#  Author:     guxfei@outlook.com
 Freedom
