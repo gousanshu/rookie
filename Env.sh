@@ -13,7 +13,7 @@ ssh_config(){
 	sed -i "s/#Port 22/Port $ssh_port/" /etc/ssh/sshd_config
 	systemctl restart sshd.service
 	
-	systemctl restart firewalld.service 
+	systemctl restart firewalld.service
 	semanage port -a -t ssh_port_t -p tcp $ssh_port
 	firewall-cmd --zone=public --add-port=$ssh_port/tcp --permanent
 	systemctl restart firewalld.service 
